@@ -14,6 +14,7 @@ A Node.js library for converting HTML with inline styles to DOCX files using OOX
 - ✅ Support for line breaks
 - ✅ Generates valid OOXML structure
 - ✅ Customizable default styles
+- ✅ Automatic HTML cleaning and sanitization
 
 ## Installation
 
@@ -149,18 +150,47 @@ Convert HTML string to DOCX file.
 **Returns:**
 - Promise<void>
 
-## Supported CSS Styles
+## HTML Cleaning and Sanitization
 
-| CSS Property | OOXML Mapping | Notes |
-|-------------|---------------|-------|
-| `text-align` | `<w:jc>` | left, center, right, justify |
-| `font-weight` | `<w:b>` | bold or >= 600 |
-| `font-style` | `<w:i>` | italic |
-| `text-decoration` | `<w:u>` | underline |
-| `color` | `<w:color>` | Hex colors |
-| `background-color` | `<w:shd>` | Hex colors |
-| `font-size` | `<w:sz>` | px or pt |
-| `font-family` | `<w:rFonts>` | Font name |
+The library automatically cleans and sanitizes input HTML to ensure compatibility with Microsoft Word:
+
+### Automatic Cleaning Features
+
+- **Removes dangerous elements**: `<script>`, `<style>`, `<iframe>`, `<object>`, `<embed>`, `<form>`, `<input>`, `<button>`, `<select>`, `<textarea>`
+- **Strips invalid Unicode characters**: Control characters that could cause corruption
+- **Simplifies complex CSS**: Keeps only safe properties like `text-align`, `font-weight`, `color`, etc.
+- **Fixes malformed HTML**: Basic cleanup of broken tags
+- **Ensures content structure**: Adds minimal content if HTML is empty
+
+### Safe CSS Properties
+
+Only these CSS properties are preserved in the output:
+
+- `text-align`
+- `font-weight`
+- `font-style`
+- `text-decoration`
+- `color`
+- `background-color`
+- `font-size`
+- `font-family`
+
+Complex or unsafe CSS (like `position: absolute`, `display: none`) is automatically removed.
+
+### Example of Cleaning
+
+**Input HTML:**
+```html
+<p>Normal text</p>
+<script>alert('dangerous');</script>
+<p style="text-align: center; position: absolute;">Centered</p>
+```
+
+**After Cleaning:**
+```html
+<p>Normal text</p>
+<p style="text-align: center;">Centered</p>
+```
 
 ## Architecture
 

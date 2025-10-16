@@ -97,8 +97,27 @@ async function runTests() {
     console.error('✗ Edge cases test failed:', error.message);
   }
 
-  console.log('\n=== All tests completed ===');
-  console.log('Check the output files in the html-to-docx directory');
+  // Test 5: HTML cleaning test
+  console.log('Test 5: HTML cleaning test');
+  const html5 = `
+    <p>Normal text</p>
+    <script>alert('dangerous');</script>
+    <style>body { background: red; }</style>
+    <p style="text-align: center; position: absolute; color: red;">Centered text</p>
+    <p>Text with invalid char: \x00\x01</p>
+    <iframe src="evil.com"></iframe>
+  `;
+  
+  const converter5 = new HtmlToDocx();
+  const outputPath5 = path.join(__dirname, 'test-output-cleaning.docx');
+  
+  try {
+    await converter5.convertHtmlToDocxFile(html5, outputPath5);
+    console.log('✓ HTML cleaning test completed successfully');
+    console.log(`  Output: ${outputPath5}\n`);
+  } catch (error) {
+    console.error('✗ HTML cleaning test failed:', error.message);
+  }
 }
 
 // Run tests

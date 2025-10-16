@@ -8,5 +8,6 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "@kanaka-prabhath/html-to-docx": "file:.."
   }
 }
