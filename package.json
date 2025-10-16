@@ -16,7 +16,7 @@
   "author": "TuteMaker Team",
   "license": "MIT",
   "dependencies": {
-    "jszip": "^3.10.1",
-    "jsdom": "^23.0.0"
+    "jsdom": "^23.0.0",
+    "jszip": "^3.10.1"
   }
 }
