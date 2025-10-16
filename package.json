@@ -1,0 +1,22 @@
+{
+  "name": "@kanaka-prabhath/html-to-docx",
+  "version": "1.0.0",
+  "description": "Convert HTML with styles to DOCX using OOXML",
+  "type": "module",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "cd demo && npm test"
+  },
+  "keywords": [
+    "html",
+    "docx",
+    "ooxml",
+    "converter"
+  ],
+  "author": "TuteMaker Team",
+  "license": "MIT",
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "jsdom": "^23.0.0"
+  }
+}

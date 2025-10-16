@@ -1,0 +1,14 @@
+{
+  "name": "html-to-docx-demo",
+  "version": "1.0.0",
+  "description": "Demo app for testing html-to-docx library",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "jsdom": "^23.0.0"
+  }
+}
