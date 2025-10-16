@@ -1,4 +1,4 @@
-import { convertHtmlToDocx } from '../lib/index.js';
+import { convertHtmlToDocx } from '@kanaka-prabhath/html-to-docx';
 import fs from 'fs';
 
 // Sample HTML content

@@ -1,4 +1,4 @@
-import HtmlToDocx from '../lib/index.js';
+import HtmlToDocx from '@kanaka-prabhath/html-to-docx';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
