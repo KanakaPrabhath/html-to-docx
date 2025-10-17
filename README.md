@@ -12,6 +12,7 @@ A Node.js library for converting HTML with inline styles to DOCX files using OOX
 - ✅ Support for headings (h1-h6)
 - ✅ Support for lists (ul, ol)
 - ✅ Support for images (URLs and base64)
+- ✅ Support for headers and footers (HTML or full-width base64 images)
 - ✅ Support for line breaks
 - ✅ Generates valid OOXML structure
 - ✅ Customizable default styles
@@ -46,15 +47,31 @@ const buffer = await converter.convertHtmlToDocx(html);
 await converter.convertHtmlToDocxFile(html, 'output.docx');
 ```
 
-### With Custom Options
+### With Headers and Footers
 
 ```javascript
-const converter = new HtmlToDocx({
-  fontSize: 12,
-  fontFamily: 'Arial',
-  lineHeight: 1.5
-});
+const converter = new HtmlToDocx();
+
+const html = `<p>Main document content</p>`;
+
+const options = {
+  header: '<p style="text-align: center;">Company Header</p>', // HTML header
+  footer: '<p style="text-align: center;">Page Footer</p>'   // HTML footer
+};
+
+const buffer = await converter.convertHtmlToDocx(html, options);
 ```
+
+### With Full-Width Base64 Image Headers/Footers
+
+```javascript
+const options = {
+  header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header
+  footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg=='  // Blue colored image for footer
+};
+```
+
+**Note:** Images are absolutely positioned to start from the very edges: headers at top-left (0,0) and footers at bottom-left (0, bottom). They span the full page width (8.5 inches) and height (2 inches) with no margins on any side. Use colored images for best results. Headers and footers may not be visible in all Word views - switch to "Print Layout" view to see them.
 
 ### Supported HTML Elements
 
@@ -139,23 +156,27 @@ new HtmlToDocx(options)
 
 #### Methods
 
-##### convertHtmlToDocx(html)
+##### convertHtmlToDocx(html, options)
 
 Convert HTML string to DOCX buffer.
 
 **Parameters:**
 - `html` (string): HTML content to convert
+- `options` (object): Conversion options
+  - `header` (string): HTML content or base64 image data URL for document header
+  - `footer` (string): HTML content or base64 image data URL for document footer
 
 **Returns:**
 - Promise<Buffer>: DOCX file buffer
 
-##### convertHtmlToDocxFile(html, outputPath)
+##### convertHtmlToDocxFile(html, outputPath, options)
 
 Convert HTML string to DOCX file.
 
 **Parameters:**
 - `html` (string): HTML content to convert
 - `outputPath` (string): Path where to save the DOCX file
+- `options` (object): Conversion options (same as above)
 
 **Returns:**
 - Promise<void>
