@@ -3,67 +3,33 @@ import fs from 'fs';
 
 // Sample HTML content
 const htmlContent = `
-  <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Comprehensive Formatting Test</title>
-        <style>
-            body { font-family: Arial, sans-serif; margin: 20px; }
-        </style>
-    </head>
-    <body>
-        <p><b>It is a long established fact that a </b></p>
-        <p><i>reader will be distracted by the readable </i></p>
-        <p><u>content of a page when looking at its layout. </u></p>
-        <p><strike>The point of using Lorem Ipsum is that it has a</strike></p>
-        <p><b><i>more-or-less normal distribution of letters, as opposed to using </i></b></p>
-        <p><i><u>'Content here, content here', </u></i></p>
-        <p>making it look like readable English. Many </p>
-        <p style="text-align: justify;">desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-        <p style="text-align: justify;"><br></p>
-        <p style="text-align: left;">Contrary to popular belief, </p>
-        <p style="text-align: center;">Lorem Ipsum is not simply random text. </p>
-        <p style="text-align: right;">It has roots in a piece of classical Latin literature from 45 BC,</p>
-        <p><span style="font-family: 'Times New Roman';"> making it over 2000 years old. Richard </span></p>
-        <p><span style="font-family: Arial;">McClintock, a Latin professor at Hampden-Sydney College in Virginia, </span></p>
-        <p><span style="font-family: 'Iskoola Pota';">looked up one of the more obscure Latin words, consectetur, </span></p>
-        <p><span style="font-family: 'Iskoola Pota';">සාහිතයය නිර්මාණයක් පරිවර්තනය කිරීදමන් බොදපාදරාත්තු වන්දන් ලියැ ී ඇති එක් භාෂාවකින් කියවා</span></p>
-        <p><font face="Iskoola Pota"><br></font><span style="font-size: 27px;"><span style="font-family: 'Iskoola Pota';">අවදබෝධ්‍ කර ගත දනා හැකි පාඨක සමූහයකට මුහුණ නිර්මාණය ආදද්ශකයක් තමන්දේ බසන් ඉිරිපත් කිරීමකි.</span></span><br><br></p>
-        <p><span style="font-size: 15px;">සාහිතයය වශදයන් ගත් කෙ පරිවර්තනය ෙ කො කාර්යයකි.</span></p>
-        <page-break data-page-break="true" contenteditable="false" data-page-number="2"></page-break>
-        <h1>There are many variations of passages </h1>
-        <h2>of Lorem Ipsum available, but the majority have suffered </h2>
-        <h3>alteration in some form, by injected humour, </h3>
-        <h4>or randomised words which don't look even slightly believable. </h4>
-        <p></p>
-        <ul>
-          <li>If you are going to use a passage of Lorem Ipsum, </li>
-          <li>you need to be sure there isn't </li>
-          <li>anything embarrassing hidden</li>
-          <li> in the middle of text. All the Lorem </li>
-        </ul>
-        <ol>
-          <li>Ipsum generators on the Internet </li>
-          <li>tend to repeat predefined chunks as necessary, </li>
-          <li>making this the first true generator on the Internet. </li>
-          <li>It uses a dictionary of over 200 Latin words, </li>
-        </ol>
-        <p></p>
-        <p>combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
-        <p><br></p>
-        <p><img src="https://picsum.photos/200" alt="Placeholder Image" width="150" height="150" /></p>
-        <p><br></p>
-        <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" alt="Test Image" width="100" height="100" /></p>
-        <p><br></p>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" alt="Base64 Image without P tag" width="50" height="50" />
-        <p>This is some text next to a floating image.</p>
-        <p><img data-key="editor-image-720b55c2-1d7c-46f1-8051-16b06d0e972b" alt="Inserted image" class="" width="181" height="286" style="width: 181px; height: 286px; float: right; margin: 0px 0px 10px 10px; display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" /></p>
-        <p>This text should wrap around the floating image on the left side.</p>
-        <p>More content to demonstrate the floating behavior.</p>
-        <p data-indent-level="3" style="margin-left: 96px;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, </p>
-        <p data-indent-level="1" style="margin-left: 32px;">making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,</p>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to html-to-docx</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9;">
+    <h1 style="color: #333; text-align: center;">Welcome to the html-to-docx library!</h1>
+    <p style="line-height: 1.6; background-color: #ffff99; padding: 5px;">This library allows you to convert HTML content to DOCX format with ease.</p>
+    <h2 style="color: #555;">Features</h2>
+    <ul style="margin-left: 20px;">
+        <li>Supports various HTML elements</li>
+        <li>Handles styles and formatting</li>
+        <li>Converts images and media</li>
+        <li>Generates professional DOCX files</li>
+    </ul>
+    <h2 style="color: #555;">Sample Content</h2>
+    <p style="line-height: 1.6;">This is a paragraph with <strong>bold text</strong>, <em>italic text</em>, and <u>underlined text</u>.</p>
+    <p style="line-height: 1.6;">Here's a list of benefits:</p>
+    <ol>
+        <li>Easy to use</li>
+        <li>Fast conversion</li>
+        <li>High quality output</li>
+    </ol>
+    <p style="line-height: 1.6;"><img style="max-width: 200px; height: auto; border: 1px solid #ccc;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" alt="Sample Image" /></p>
+    <p style="line-height: 1.6;">Thank you for using html-to-docx!</p>
+</body>
+</html>
 `;
 
 async function main() {
