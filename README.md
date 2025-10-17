@@ -11,6 +11,7 @@ A Node.js library for converting HTML with inline styles to DOCX files using OOX
 - ✅ Support for font family and font size
 - ✅ Support for headings (h1-h6)
 - ✅ Support for lists (ul, ol)
+- ✅ Support for images (URLs and base64)
 - ✅ Support for line breaks
 - ✅ Generates valid OOXML structure
 - ✅ Customizable default styles
@@ -106,6 +107,15 @@ const converter = new HtmlToDocx({
 </ol>
 ```
 
+#### Images
+```html
+<!-- URL images (automatically downloaded) -->
+<img src="https://example.com/image.png" alt="Description" width="300" height="200">
+
+<!-- Base64 encoded images -->
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="Base64 Image">
+```
+
 #### Line Breaks
 ```html
 <p>Line 1<br>Line 2</p>
@@ -198,18 +208,29 @@ The library uses OOXML (Office Open XML) to generate valid DOCX files:
 
 1. **HTML Parsing**: Uses JSDOM to parse HTML into DOM
 2. **Style Extraction**: Parses inline styles from elements
-3. **OOXML Generation**: Converts DOM nodes to OOXML elements
-4. **ZIP Packaging**: Uses JSZip to package as .docx file
+3. **Image Processing**: Downloads URL images or decodes base64 images and embeds them as media files
+4. **OOXML Generation**: Converts DOM nodes to OOXML elements
+5. **ZIP Packaging**: Uses JSZip to package as .docx file
 
 ### File Structure
 
 ```
 html-to-docx/
-├── index.js           # Main converter class
-├── templates.js       # OOXML templates
-├── test.js           # Test file
-├── package.json      # Package configuration
-└── README.md         # This file
+├── lib/
+│   ├── index.js           # Main converter class
+│   ├── converter.js       # Main conversion logic
+│   ├── htmlParser.js      # HTML parsing and processing
+│   ├── ooxmlGenerator.js  # OOXML element generation
+│   ├── mediaHandler.js    # Image processing and media management
+│   ├── styleParser.js     # CSS style parsing
+│   ├── templates.js       # OOXML templates
+│   └── utils.js           # Utility functions
+├── demo/
+│   ├── index.js           # Demo script
+│   └── package.json       # Demo dependencies
+├── examples.js            # Additional examples
+├── package.json           # Package configuration
+└── README.md              # This file
 ```
 
 ## Testing
@@ -255,11 +276,23 @@ The generated DOCX file contains:
 - `[Content_Types].xml` - File type definitions
 - `_rels/.rels` - Package relationships
 - `word/document.xml` - Main document content
+- `word/_rels/document.xml.rels` - Document relationships (includes image references)
 - `word/styles.xml` - Document styles
 - `word/fontTable.xml` - Font definitions
 - `word/settings.xml` - Document settings
+- `word/media/` - Embedded images and media files
 - `docProps/app.xml` - Application properties
 - `docProps/core.xml` - Core properties
+
+### Image Processing
+
+Images in HTML are automatically processed and embedded:
+
+1. **URL Images**: Downloaded via HTTP/HTTPS and cached as media files
+2. **Base64 Images**: Decoded and embedded directly
+3. **Media Files**: Stored in `word/media/` with unique filenames
+4. **Relationships**: Referenced in `document.xml.rels` with proper IDs
+5. **OOXML Generation**: Images rendered as inline drawings with proper sizing
 
 ### Paragraph Properties (`<w:pPr>`)
 

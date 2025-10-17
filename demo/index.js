@@ -51,6 +51,8 @@ const htmlContent = `
         <p></p>
         <p>combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
         <p><br></p>
+        <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" alt="Test Image" width="100" height="100" /></p>
+        <p><br></p>
         <p data-indent-level="3" style="margin-left: 96px;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, </p>
         <p data-indent-level="1" style="margin-left: 32px;">making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,</p>
     </body>
