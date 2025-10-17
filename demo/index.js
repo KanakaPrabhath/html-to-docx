@@ -35,13 +35,20 @@ const htmlContent = `
 async function main() {
     try {
         const options = {
+            pageSize: 'A4', // Default page size (A4, Letter, Legal, or custom {width: number, height: number} in inches)
+            marginTop: 1, // 1 inch top margin
+            marginRight: 1, // 1 inch right margin
+            marginBottom: 1, // 1 inch bottom margin
+            marginLeft: 1, // 1 inch left margin
+            marginHeader: 0.5, // 0.5 inch header margin
+            marginFooter: 0.5, // 0.5 inch footer margin
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg=='  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
-        fs.writeFileSync('demo-output.docx', docxBuffer);
-        console.log('DOCX file created: demo-output.docx');
+        fs.writeFileSync('demo-output-new.docx', docxBuffer);
+        console.log('DOCX file created: demo-output-new.docx');
     } catch (error) {
         console.error('Error converting HTML to DOCX:', error);
     }

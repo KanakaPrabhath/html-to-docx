@@ -62,13 +62,20 @@ const options = {
 const buffer = await converter.convertHtmlToDocx(html, options);
 ```
 
-### With Full-Width Base64 Image Headers/Footers
+### With Page Size and Margins
 
 ```javascript
 const options = {
-  header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header
-  footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg=='  // Blue colored image for footer
+  pageSize: 'A4', // 'A4', 'Letter', 'Legal', or custom {width: 8.5, height: 11}
+  marginTop: 1,    // 1 inch top margin
+  marginRight: 1,  // 1 inch right margin
+  marginBottom: 1, // 1 inch bottom margin
+  marginLeft: 1,   // 1 inch left margin
+  marginHeader: 0.5, // 0.5 inch header margin
+  marginFooter: 0.5  // 0.5 inch footer margin
 };
+
+const buffer = await converter.convertHtmlToDocx(html, options);
 ```
 
 **Note:** Images are absolutely positioned to start from the very edges: headers at top-left (0,0) and footers at bottom-left (0, bottom). They span the full page width (8.5 inches) and height (2 inches) with no margins on any side. Use colored images for best results. Headers and footers may not be visible in all Word views - switch to "Print Layout" view to see them.
@@ -153,6 +160,14 @@ new HtmlToDocx(options)
 - `fontSize` (number): Default font size in points (default: 11)
 - `fontFamily` (string): Default font family (default: 'Calibri')
 - `lineHeight` (number): Default line height multiplier (default: 1.15)
+- `pageSize` (string|object): Page size - 'A4', 'Letter', 'Legal', or custom {width: number, height: number} in inches (default: 'A4')
+- `marginTop` (number): Top margin in inches (default: 1)
+- `marginRight` (number): Right margin in inches (default: 1)
+- `marginBottom` (number): Bottom margin in inches (default: 1)
+- `marginLeft` (number): Left margin in inches (default: 1)
+- `marginHeader` (number): Header margin in inches (default: 0.5)
+- `marginFooter` (number): Footer margin in inches (default: 0.5)
+- `marginGutter` (number): Gutter margin in inches (default: 0)
 
 #### Methods
 
@@ -165,6 +180,14 @@ Convert HTML string to DOCX buffer.
 - `options` (object): Conversion options
   - `header` (string): HTML content or base64 image data URL for document header
   - `footer` (string): HTML content or base64 image data URL for document footer
+  - `pageSize` (string|object): Page size - 'A4', 'Letter', 'Legal', or custom {width: number, height: number} in inches (default: 'A4')
+  - `marginTop` (number): Top margin in inches (default: 1)
+  - `marginRight` (number): Right margin in inches (default: 1)
+  - `marginBottom` (number): Bottom margin in inches (default: 1)
+  - `marginLeft` (number): Left margin in inches (default: 1)
+  - `marginHeader` (number): Header margin in inches (default: 0.5)
+  - `marginFooter` (number): Footer margin in inches (default: 0.5)
+  - `marginGutter` (number): Gutter margin in inches (default: 0)
 
 **Returns:**
 - Promise<Buffer>: DOCX file buffer
