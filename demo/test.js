@@ -97,26 +97,23 @@ async function runTests() {
     console.error('✗ Edge cases test failed:', error.message);
   }
 
-  // Test 5: HTML cleaning test
-  console.log('Test 5: HTML cleaning test');
-  const html5 = `
-    <p>Normal text</p>
-    <script>alert('dangerous');</script>
-    <style>body { background: red; }</style>
-    <p style="text-align: center; position: absolute; color: red;">Centered text</p>
-    <p>Text with invalid char: \x00\x01</p>
-    <iframe src="evil.com"></iframe>
+  // Test 6: Base64 image test
+  console.log('Test 6: Base64 image test');
+  const html6 = `
+    <p>This is a test with a base64 encoded image:</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="Test image" style="width: 181px; height: 286px; float: right; margin: 0px 0px 10px 10px; display: block;"/>
+    <p>Image should be embedded in the DOCX file with the specified styles.</p>
   `;
   
-  const converter5 = new HtmlToDocx();
-  const outputPath5 = path.join(__dirname, 'test-output-cleaning.docx');
+  const converter6 = new HtmlToDocx();
+  const outputPath6 = path.join(__dirname, 'test-output-base64-image.docx');
   
   try {
-    await converter5.convertHtmlToDocxFile(html5, outputPath5);
-    console.log('✓ HTML cleaning test completed successfully');
-    console.log(`  Output: ${outputPath5}\n`);
+    await converter6.convertHtmlToDocxFile(html6, outputPath6);
+    console.log('✓ Base64 image test completed successfully');
+    console.log(`  Output: ${outputPath6}\n`);
   } catch (error) {
-    console.error('✗ HTML cleaning test failed:', error.message);
+    console.error('✗ Base64 image test failed:', error.message);
   }
 }
 

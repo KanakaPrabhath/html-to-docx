@@ -56,6 +56,10 @@ const htmlContent = `
         <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" alt="Test Image" width="100" height="100" /></p>
         <p><br></p>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" alt="Base64 Image without P tag" width="50" height="50" />
+        <p>This is some text next to a floating image.</p>
+        <p><img data-key="editor-image-720b55c2-1d7c-46f1-8051-16b06d0e972b" alt="Inserted image" class="" width="181" height="286" style="width: 181px; height: 286px; float: right; margin: 0px 0px 10px 10px; display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChAI/hxaB2tKUAAAAASUVORK5CYII=" /></p>
+        <p>This text should wrap around the floating image on the left side.</p>
+        <p>More content to demonstrate the floating behavior.</p>
         <p data-indent-level="3" style="margin-left: 96px;">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, </p>
         <p data-indent-level="1" style="margin-left: 32px;">making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,</p>
     </body>
