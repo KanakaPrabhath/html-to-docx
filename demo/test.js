@@ -97,6 +97,32 @@ async function runTests() {
     console.error('✗ Edge cases test failed:', error.message);
   }
 
+  // Test 5: HTML table with styles test
+  console.log('Test 5: HTML table with styles test');
+  const html5 = `
+    <table style="border-collapse: collapse; width: 100%;">
+      <tr style="background-color: #c1b3ffff;">
+        <th style="border: 1px solid #000000ff; padding: 8px; text-align: left;">Header 1</th>
+        <th style="border: 1px solid #000000ff; padding: 8px; text-align: left;">Header 2</th>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #000000ff; padding: 8px;">Data 1</td>
+        <td style="border: 1px solid #000000ff; padding: 8px;">Data 2</td>
+      </tr>
+    </table>
+  `;
+  
+  const converter5 = new HtmlToDocx();
+  const outputPath5 = path.join(__dirname, 'test-output-table.docx');
+  
+  try {
+    await converter5.convertHtmlToDocxFile(html5, outputPath5);
+    console.log('✓ HTML table with styles test completed successfully');
+    console.log(`  Output: ${outputPath5}\n`);
+  } catch (error) {
+    console.error('✗ HTML table with styles test failed:', error.message);
+  }
+
   // Test 6: Base64 image test
   console.log('Test 6: Base64 image test');
   const html6 = `
