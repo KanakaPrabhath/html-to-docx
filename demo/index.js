@@ -42,6 +42,10 @@ async function main() {
             marginLeft: 1, // 1 inch left margin
             marginHeader: 0.5, // 0.5 inch header margin
             marginFooter: 0.5, // 0.5 inch footer margin
+            headerHeight: 1, // 1 inch header image height
+            footerHeight: 1, // 1 inch footer image height
+            enableHeader: true, // Enable/disable header (default: true if header content provided)
+            enableFooter: true, // Enable/disable footer (default: true if footer content provided)
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg=='  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
         };
