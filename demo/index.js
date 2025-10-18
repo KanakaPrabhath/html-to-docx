@@ -11,10 +11,6 @@ const htmlContent = `
 <body style="font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9;">
     <h1 style="color: #333; text-align: center;">Welcome to the html-to-docx library!</h1>
 
-    <div data-h1 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 5px; background-color: #a10101ff; width:100%;">
-    <p data-no-spacing style="color: #ffffffff; margin: 0;">This is a sample heading with text box!</p>
-    </div>
-
     <p style="line-height: 1.6; background-color: #ffff99; padding: 5px;">This library allows you to convert HTML content to DOCX format with ease.</p>
     <h2 style="color: #555;">Features</h2>
     <ul style="margin-left: 20px;">
@@ -55,7 +51,18 @@ async function main() {
             enablePageNumbers: true, // Enable/disable page numbers
             pageNumberAlignment: 'center', // Page number alignment: 'left', 'center', or 'right'
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
-            footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg=='  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
+            footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==',  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
+            headingReplacements: [
+                `<div data-h1 class="textbox" style="border: 1px solid #000000ff; border-radius: 5px; padding: 0px 5px 0px 5px; background-color: #000000ff; width:100%;">
+    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 21px; font-weight: bold;">HEADING_TEXT</p>
+    </div>`,
+                `<div data-h2 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
+    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 19px; font-weight: bold;">HEADING_TEXT</p>
+    </div>`,
+                `<div data-h3 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
+    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 16px; font-weight: bold;">HEADING_TEXT</p>
+    </div>`
+            ]
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
