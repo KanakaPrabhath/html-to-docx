@@ -18,6 +18,7 @@ const htmlContent = `
         <li>Converts images and media</li>
         <li>Generates professional DOCX files</li>
     </ul>
+    <page-break data-page-break="true" contenteditable="false" data-page-number="2"></page-break>
     <h2 style="color: #555;">Sample Content</h2>
     <p style="line-height: 1.6;">This is a paragraph with <strong>bold text</strong>, <em>italic text</em>, and <u>underlined text</u>.</p>
     <p style="line-height: 1.6;">Here's a list of benefits:</p>
@@ -51,8 +52,8 @@ async function main() {
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
-        fs.writeFileSync('demo-output-new.docx', docxBuffer);
-        console.log('DOCX file created: demo-output-new.docx');
+        fs.writeFileSync('demo-output-pagebreak.docx', docxBuffer);
+        console.log('DOCX file created: demo-output-pagebreak.docx');
     } catch (error) {
         console.error('Error converting HTML to DOCX:', error);
     }
