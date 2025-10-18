@@ -1,202 +1,113 @@
 # HTML to DOCX Converter
 
-A Node.js library for converting HTML with inline styles to DOCX files using OOXML (Office Open XML).
+A powerful Node.js library for converting HTML with inline styles to Microsoft Word DOCX files using OOXML (Office Open XML). Perfect for generating professional documents from web content, rich text editors, or any HTML source.
 
-## Features
+## ✨ Features
 
-- ✅ Convert HTML to DOCX with proper formatting
-- ✅ Support for text alignment (left, center, right, justify)
-- ✅ Support for text formatting (bold, italic, underline)
-- ✅ Support for colors and background colors
-- ✅ Support for font family and font size
-- ✅ Support for headings (h1-h6)
-- ✅ Support for lists (ul, ol)
-- ✅ Support for images (URLs and base64)
-- ✅ Support for headers and footers (HTML or full-width base64 images)
-- ✅ Support for page numbers in footer with alignment options
-- ✅ Support for line breaks
-- ✅ Generates valid OOXML structure
-- ✅ Customizable default styles
-- ✅ Automatic HTML cleaning and sanitization
+### 📝 Text Formatting
+- **Text Alignment**: Left, center, right, and justified alignment
+- **Font Styling**: Bold, italic, underline, strikethrough
+- **Colors**: Text color and background color support
+- **Typography**: Font family, font size, and line height
+- **Headings**: H1-H6 with automatic styling
 
-## Installation
+### 📋 Lists & Structure
+- **Unordered Lists**: Bulleted lists with proper indentation
+- **Ordered Lists**: Numbered lists with automatic numbering
+- **Nested Lists**: Support for nested list structures
+- **Custom Indentation**: Configurable list indentation levels
+
+### 🖼️ Media & Images
+- **URL Images**: Automatic download and embedding of web images
+- **Base64 Images**: Direct embedding of base64 encoded images
+- **Image Sizing**: Width and height control via attributes or CSS
+- **Alt Text**: Accessibility support with alt text preservation
+
+### 📄 Document Layout
+- **Headers & Footers**: HTML content or full-width images
+- **Page Numbers**: Automatic page numbering with alignment options
+- **Page Breaks**: Manual page breaks and section breaks
+- **Margins**: Customizable page margins (top, bottom, left, right)
+- **Page Size**: Support for A4, Letter, Legal, and custom sizes
+
+### 🎨 Advanced Styling
+- **Text Boxes**: Div elements with background colors and borders
+- **Tables**: Full table support with headers and cells
+- **Spacing**: Custom paragraph spacing and line height
+- **Borders**: Border styling for text boxes and tables
+- **Background Colors**: Element background color support
+
+### 🔧 Technical Features
+- **OOXML Generation**: Creates valid Office Open XML structure
+- **HTML Sanitization**: Automatic cleaning of unsafe HTML elements
+- **CSS Parsing**: Support for safe CSS properties
+- **Media Management**: Efficient handling of embedded images
+- **ZIP Packaging**: Proper DOCX file generation using JSZip
+
+## 📦 Installation
 
 ```bash
-npm install
+npm install @kanaka-prabhath/html-to-docx
 ```
 
-## Usage
+## 🚀 Quick Start
 
 ### Basic Usage
 
 ```javascript
-const HtmlToDocx = require('./index');
+import { HtmlToDocx } from '@kanaka-prabhath/html-to-docx';
 
 const converter = new HtmlToDocx();
 
 const html = `
-  <p style="text-align: left;">Left aligned text</p>
-  <p style="text-align: center;">Center aligned text</p>
-  <p style="text-align: right;">Right aligned text</p>
-  <p style="text-align: right;"><br></p>
+  <h1>Welcome to DOCX Export</h1>
+  <p>This is a <strong>bold</strong> paragraph with <em>italic</em> text.</p>
+  <ul>
+    <li>Feature 1</li>
+    <li>Feature 2</li>
+  </ul>
 `;
 
 // Convert to buffer
 const buffer = await converter.convertHtmlToDocx(html);
 
-// Or save to file
-await converter.convertHtmlToDocxFile(html, 'output.docx');
+// Save to file
+await converter.convertHtmlToDocxFile(html, 'document.docx');
 ```
 
-### With Headers and Footers
+### Advanced Configuration
 
 ```javascript
-const converter = new HtmlToDocx();
-
-const html = `<p>Main document content</p>`;
-
-const options = {
-  header: '<p style="text-align: center;">Company Header</p>', // HTML header
-  footer: '<p style="text-align: center;">Page Footer</p>'   // HTML footer
-};
-
-const buffer = await converter.convertHtmlToDocx(html, options);
+const converter = new HtmlToDocx({
+  fontSize: 12,           // Default font size in points
+  fontFamily: 'Arial',    // Default font family
+  lineHeight: 1.2,        // Line height multiplier
+  pageSize: 'A4',         // Page size: 'A4', 'Letter', 'Legal', or custom object
+  marginTop: 1,           // Top margin in inches
+  marginRight: 1,         // Right margin in inches
+  marginBottom: 1,        // Bottom margin in inches
+  marginLeft: 1,          // Left margin in inches
+  marginHeader: 0.5,      // Header margin in inches
+  marginFooter: 0.5       // Footer margin in inches
+});
 ```
 
-### With Page Size and Margins
-
-```javascript
-const options = {
-  pageSize: 'A4', // 'A4', 'Letter', 'Legal', or custom {width: 8.5, height: 11}
-  marginTop: 1,    // 1 inch top margin
-  marginRight: 1,  // 1 inch right margin
-  marginBottom: 1, // 1 inch bottom margin
-  marginLeft: 1,   // 1 inch left margin
-  marginHeader: 0.5, // 0.5 inch header margin
-  marginFooter: 0.5  // 0.5 inch footer margin
-};
-
-const buffer = await converter.convertHtmlToDocx(html, options);
-```
-
-### With Page Numbers
-
-```javascript
-const options = {
-  enablePageNumbers: true,        // Enable/disable page numbers (default: false)
-  pageNumberAlignment: 'right'    // 'left', 'center', or 'right' (default: 'right')
-};
-
-const buffer = await converter.convertHtmlToDocx(html, options);
-```
-
-Page numbers appear in the footer area and update automatically in Word.
-
-### Supported HTML Elements
-
-#### Text Alignment
-```html
-<p style="text-align: left;">Left aligned</p>
-<p style="text-align: center;">Center aligned</p>
-<p style="text-align: right;">Right aligned</p>
-<p style="text-align: justify;">Justified text</p>
-```
-
-#### Text Formatting
-```html
-<p><strong>Bold text</strong></p>
-<p><em>Italic text</em></p>
-<p><u>Underlined text</u></p>
-<p><strong><em>Bold and italic</em></strong></p>
-```
-
-#### Colors
-```html
-<p style="color: #FF0000;">Red text</p>
-<p style="background-color: #FFFF00;">Yellow background</p>
-```
-
-#### Font Styling
-```html
-<p style="font-size: 14px;">Larger text</p>
-<p style="font-family: Arial;">Arial font</p>
-<p style="font-weight: bold; font-style: italic;">Bold italic</p>
-```
-
-#### Headings
-```html
-<h1>Heading 1</h1>
-<h2>Heading 2</h2>
-<h3>Heading 3</h3>
-```
-
-#### Lists
-```html
-<ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
-</ul>
-
-<ol>
-  <li>First</li>
-  <li>Second</li>
-</ol>
-```
-
-#### Images
-```html
-<!-- URL images (automatically downloaded) -->
-<img src="https://example.com/image.png" alt="Description" width="300" height="200">
-
-<!-- Base64 encoded images -->
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="Base64 Image">
-```
-
-#### Line Breaks
-```html
-<p>Line 1<br>Line 2</p>
-<p><br></p> <!-- Empty paragraph -->
-```
-
-## API Reference
+## 📖 API Reference
 
 ### Class: HtmlToDocx
 
 #### Constructor
 
 ```javascript
-new HtmlToDocx(options)
+new HtmlToDocx(options?)
 ```
 
-**Options:**
-- `fontSize` (number): Default font size in points (default: 11)
-- `fontFamily` (string): Default font family (default: 'Calibri')
-- `lineHeight` (number): Default line height multiplier (default: 1.15)
-- `pageSize` (string|object): Page size - 'A4', 'Letter', 'Legal', or custom {width: number, height: number} in inches (default: 'A4')
-- `marginTop` (number): Top margin in inches (default: 1)
-- `marginRight` (number): Right margin in inches (default: 1)
-- `marginBottom` (number): Bottom margin in inches (default: 1)
-- `marginLeft` (number): Left margin in inches (default: 1)
-- `marginHeader` (number): Header margin in inches (default: 0.5)
-- `marginFooter` (number): Footer margin in inches (default: 0.5)
-- `marginGutter` (number): Gutter margin in inches (default: 0)
-- `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
-- `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
-
-#### Methods
-
-##### convertHtmlToDocx(html, options)
-
-Convert HTML string to DOCX buffer.
-
 **Parameters:**
-- `html` (string): HTML content to convert
-- `options` (object): Conversion options
-  - `header` (string): HTML content or base64 image data URL for document header
-  - `footer` (string): HTML content or base64 image data URL for document footer
-  - `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
-  - `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
-  - `pageSize` (string|object): Page size - 'A4', 'Letter', 'Legal', or custom {width: number, height: number} in inches (default: 'A4')
+- `options` (Object, optional): Configuration options
+  - `fontSize` (number): Default font size in points (default: 11)
+  - `fontFamily` (string): Default font family (default: 'Calibri')
+  - `lineHeight` (number): Default line height multiplier (default: 1.15)
+  - `pageSize` (string|object): Page size - 'A4', 'Letter', 'Legal', or custom `{width: number, height: number}` in inches (default: 'A4')
   - `marginTop` (number): Top margin in inches (default: 1)
   - `marginRight` (number): Right margin in inches (default: 1)
   - `marginBottom` (number): Bottom margin in inches (default: 1)
@@ -205,121 +116,185 @@ Convert HTML string to DOCX buffer.
   - `marginFooter` (number): Footer margin in inches (default: 0.5)
   - `marginGutter` (number): Gutter margin in inches (default: 0)
 
-**Returns:**
-- Promise<Buffer>: DOCX file buffer
+#### Methods
 
-##### convertHtmlToDocxFile(html, outputPath, options)
+##### convertHtmlToDocx(html, options?)
 
-Convert HTML string to DOCX file.
+Convert HTML string to DOCX buffer.
+
+**Parameters:**
+- `html` (string): HTML content to convert
+- `options` (Object, optional): Conversion options (same as constructor plus additional runtime options)
+
+**Returns:** Promise<Buffer> - DOCX file buffer
+
+##### convertHtmlToDocxFile(html, outputPath, options?)
+
+Convert HTML string and save to DOCX file.
 
 **Parameters:**
 - `html` (string): HTML content to convert
 - `outputPath` (string): Path where to save the DOCX file
-- `options` (object): Conversion options (same as above)
+- `options` (Object, optional): Conversion options
 
-**Returns:**
-- Promise<void>
+**Returns:** Promise<void>
 
-## HTML Cleaning and Sanitization
+### Runtime Options
 
-The library automatically cleans and sanitizes input HTML to ensure compatibility with Microsoft Word:
+Additional options that can be passed to conversion methods:
 
-### Automatic Cleaning Features
+- `header` (string): HTML content or base64 image data URL for document header
+- `footer` (string): HTML content or base64 image data URL for document footer
+- `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
+- `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
+- `headingReplacements` (Array<string>): Custom HTML templates for headings (H1, H2, H3, etc.)
 
-- **Removes dangerous elements**: `<script>`, `<style>`, `<iframe>`, `<object>`, `<embed>`, `<form>`, `<input>`, `<button>`, `<select>`, `<textarea>`
-- **Strips invalid Unicode characters**: Control characters that could cause corruption
-- **Simplifies complex CSS**: Keeps only safe properties like `text-align`, `font-weight`, `color`, etc.
-- **Fixes malformed HTML**: Basic cleanup of broken tags
-- **Ensures content structure**: Adds minimal content if HTML is empty
+## 🎯 Supported HTML Elements
 
-### Safe CSS Properties
-
-Only these CSS properties are preserved in the output:
-
-- `text-align`
-- `font-weight`
-- `font-style`
-- `text-decoration`
-- `color`
-- `background-color`
-- `font-size`
-- `font-family`
-
-Complex or unsafe CSS (like `position: absolute`, `display: none`) is automatically removed.
-
-### Example of Cleaning
-
-**Input HTML:**
+### Text Elements
 ```html
-<p>Normal text</p>
-<script>alert('dangerous');</script>
-<p style="text-align: center; position: absolute;">Centered</p>
+<p style="text-align: center;">Centered paragraph</p>
+<strong>Bold text</strong>
+<em>Italic text</em>
+<u>Underlined text</u>
+<strike>Strikethrough text</strike>
+<span style="color: #FF0000;">Red text</span>
 ```
 
-**After Cleaning:**
+### Headings
 ```html
-<p>Normal text</p>
-<p style="text-align: center;">Centered</p>
+<h1>Main Title</h1>
+<h2>Section Header</h2>
+<h3>Subsection</h3>
 ```
 
-## Architecture
+### Lists
+```html
+<ul>
+  <li>Unordered item</li>
+  <li>Another item</li>
+</ul>
 
-The library uses OOXML (Office Open XML) to generate valid DOCX files:
-
-1. **HTML Parsing**: Uses JSDOM to parse HTML into DOM
-2. **Style Extraction**: Parses inline styles from elements
-3. **Image Processing**: Downloads URL images or decodes base64 images and embeds them as media files
-4. **OOXML Generation**: Converts DOM nodes to OOXML elements
-5. **ZIP Packaging**: Uses JSZip to package as .docx file
-
-### File Structure
-
-```
-html-to-docx/
-├── lib/
-│   ├── index.js           # Main converter class
-│   ├── converter.js       # Main conversion logic
-│   ├── htmlParser.js      # HTML parsing and processing
-│   ├── ooxmlGenerator.js  # OOXML element generation
-│   ├── mediaHandler.js    # Image processing and media management
-│   ├── styleParser.js     # CSS style parsing
-│   ├── templates.js       # OOXML templates
-│   └── utils.js           # Utility functions
-├── demo/
-│   ├── index.js           # Demo script
-│   └── package.json       # Demo dependencies
-├── examples.js            # Additional examples
-├── package.json           # Package configuration
-└── README.md              # This file
+<ol>
+  <li>Ordered item 1</li>
+  <li>Ordered item 2</li>
+</ol>
 ```
 
-## Testing
+### Images
+```html
+<!-- URL images -->
+<img src="https://example.com/image.png" alt="Description" width="300" height="200">
 
-```bash
-node test.js
+<!-- Base64 images -->
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="Base64 Image">
 ```
 
-This will create a `test-output.docx` file with various formatting examples.
+### Tables
+```html
+<table>
+  <tr>
+    <th>Header 1</th>
+    <th>Header 2</th>
+  </tr>
+  <tr>
+    <td>Data 1</td>
+    <td>Data 2</td>
+  </tr>
+</table>
+```
 
-## Integration with TuteMaker
+### Text Boxes
+```html
+<div style="background-color: #FFFF00; padding: 10px; border: 1px solid #000;">
+  <p>Content in a text box</p>
+</div>
+```
 
-This library is designed to be used in the TuteMaker Electron app for exporting HTML content from the editor to Word documents.
+### Page Breaks
+```html
+<p>Content before break</p>
+<page-break></page-break>
+<p>Content after break</p>
+```
 
-### Example Integration
+## 🎨 CSS Property Support
 
+### Supported Properties
+- `text-align`: left, center, right, justify
+- `font-weight`: normal, bold, or numeric values ≥ 600
+- `font-style`: normal, italic
+- `text-decoration`: underline, line-through
+- `color`: Hex colors (#RGB, #RRGGBB), named colors
+- `background-color`: Hex colors and named colors
+- `font-size`: px, pt units
+- `font-family`: Font family names
+- `margin`: All margin properties for spacing
+- `padding`: Padding for text boxes
+- `border`: Border styling for text boxes
+- `border-radius`: Border radius for text boxes
+- `width`/`height`: Dimensions for images and text boxes
+- `page-break-before`/`page-break-after`: always
+- `float`: left, right (for images)
+
+### Automatic Sanitization
+The library automatically removes or ignores:
+- Dangerous elements: `<script>`, `<iframe>`, `<object>`, etc.
+- Unsafe CSS: `position: absolute`, complex layouts
+- Invalid Unicode characters
+- Malformed HTML structures
+
+## 📄 Headers & Footers
+
+### HTML Headers/Footers
+```javascript
+const options = {
+  header: '<p style="text-align: center; font-size: 10pt;">Company Header</p>',
+  footer: '<p style="text-align: center; font-size: 10pt;">Page Footer</p>'
+};
+```
+
+### Image Headers/Footers
+```javascript
+const options = {
+  header: 'data:image/png;base64,...', // Full-width header image
+  footer: 'data:image/png;base64,...'  // Full-width footer image
+};
+```
+
+### Page Numbers
+```javascript
+const options = {
+  enablePageNumbers: true,
+  pageNumberAlignment: 'center' // 'left', 'center', or 'right'
+};
+```
+
+## 🔧 Advanced Usage
+
+### Custom Heading Styles
+```javascript
+const options = {
+  headingReplacements: [
+    // H1 replacement
+    '<div style="background-color: #E6E6E6; padding: 10px;"><h1>HEADING_TEXT</h1></div>',
+    // H2 replacement
+    '<div style="border-left: 4px solid #0066CC; padding-left: 10px;"><h2>HEADING_TEXT</h2></div>',
+    // H3 replacement
+    '<h3 style="color: #0066CC;">HEADING_TEXT</h3>'
+  ]
+};
+```
+
+### Electron Integration
 ```javascript
 // In Electron main process
-const HtmlToDocx = require('./electron/html-to-docx');
+const HtmlToDocx = require('@kanaka-prabhath/html-to-docx');
 
-ipcMain.handle('export-to-docx', async (event, htmlContent, outputPath) => {
+ipcMain.handle('export-to-docx', async (event, { html, outputPath, options }) => {
   try {
-    const converter = new HtmlToDocx({
-      fontSize: 11,
-      fontFamily: 'Calibri'
-    });
-    
-    await converter.convertHtmlToDocxFile(htmlContent, outputPath);
-    
+    const converter = new HtmlToDocx(options);
+    await converter.convertHtmlToDocxFile(html, outputPath);
     return { success: true };
   } catch (error) {
     return { success: false, error: error.message };
@@ -327,52 +302,79 @@ ipcMain.handle('export-to-docx', async (event, htmlContent, outputPath) => {
 });
 ```
 
-## Technical Details
+### Batch Processing
+```javascript
+const documents = [
+  { html: '<h1>Doc 1</h1>', name: 'document1' },
+  { html: '<h1>Doc 2</h1>', name: 'document2' }
+];
 
-### OOXML Structure
+for (const doc of documents) {
+  await converter.convertHtmlToDocxFile(doc.html, `${doc.name}.docx`);
+}
+```
 
-The generated DOCX file contains:
+## 🏗️ Architecture
 
-- `[Content_Types].xml` - File type definitions
-- `_rels/.rels` - Package relationships
-- `word/document.xml` - Main document content
-- `word/_rels/document.xml.rels` - Document relationships (includes image references)
-- `word/styles.xml` - Document styles
-- `word/fontTable.xml` - Font definitions
-- `word/settings.xml` - Document settings
-- `word/media/` - Embedded images and media files
-- `docProps/app.xml` - Application properties
-- `docProps/core.xml` - Core properties
+The library processes HTML through several stages:
 
-### Image Processing
+1. **HTML Parsing**: Uses JSDOM to parse and clean HTML
+2. **Style Extraction**: Parses inline CSS properties
+3. **Element Processing**: Converts HTML elements to OOXML
+4. **Media Handling**: Downloads and embeds images
+5. **OOXML Generation**: Creates Office Open XML structure
+6. **ZIP Packaging**: Packages everything into a .docx file
 
-Images in HTML are automatically processed and embedded:
+### File Structure Inside DOCX
+```
+document.docx/
+├── [Content_Types].xml
+├── _rels/.rels
+├── word/
+│   ├── document.xml          # Main document content
+│   ├── styles.xml            # Document styles
+│   ├── numbering.xml         # List numbering definitions
+│   ├── header1.xml           # Header content (if used)
+│   ├── footer1.xml           # Footer content (if used)
+│   ├── _rels/                # Relationships
+│   └── media/                # Embedded images
+└── docProps/
+    ├── app.xml               # Application properties
+    └── core.xml              # Core properties
+```
 
-1. **URL Images**: Downloaded via HTTP/HTTPS and cached as media files
-2. **Base64 Images**: Decoded and embedded directly
-3. **Media Files**: Stored in `word/media/` with unique filenames
-4. **Relationships**: Referenced in `document.xml.rels` with proper IDs
-5. **OOXML Generation**: Images rendered as inline drawings with proper sizing
+## 🧪 Testing
 
-### Paragraph Properties (`<w:pPr>`)
+```bash
+# Run the demo
+cd demo
+npm install
+npm test
 
-- Alignment: `<w:jc w:val="left|center|right|both"/>`
-- Spacing: `<w:spacing w:line="..." w:lineRule="auto"/>`
-- Style: `<w:pStyle w:val="Heading1"/>`
+# This creates test-output.docx with various formatting examples
+```
 
-### Run Properties (`<w:rPr>`)
+## 📋 Requirements
 
-- Bold: `<w:b/>`
-- Italic: `<w:i/>`
-- Underline: `<w:u w:val="single"/>`
-- Color: `<w:color w:val="RRGGBB"/>`
-- Font Size: `<w:sz w:val="halfPoints"/>`
-- Font Family: `<w:rFonts w:ascii="fontName"/>`
+- Node.js 14+
+- Dependencies: `jsdom`, `jszip`
 
-## License
+## 🤝 Contributing
 
-MIT
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new features
+4. Ensure all tests pass
+5. Submit a pull request
 
-## Author
+## 📄 License
 
-TuteMaker Team
+MIT License - see LICENSE file for details
+
+## 👥 Author
+
+Kanaka Prabhath (TuteMaker Team)
+
+## 🙏 Acknowledgments
+
+Built with [JSDOM](https://github.com/jsdom/jsdom) for HTML parsing and [JSZip](https://github.com/Stuk/jszip) for ZIP file generation.
