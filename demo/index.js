@@ -47,13 +47,15 @@ async function main() {
             footerHeight: 1, // 1 inch footer image height
             enableHeader: true, // Enable/disable header (default: true if header content provided)
             enableFooter: true, // Enable/disable footer (default: true if footer content provided)
+            enablePageNumbers: true, // Enable/disable page numbers
+            pageNumberAlignment: 'center', // Page number alignment: 'left', 'center', or 'right'
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg=='  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
-        fs.writeFileSync('demo-output-pagebreak.docx', docxBuffer);
-        console.log('DOCX file created: demo-output-pagebreak.docx');
+        fs.writeFileSync('demo-output-textbox-page-numbers.docx', docxBuffer);
+        console.log('DOCX file created: demo-output-textbox-page-numbers.docx');
     } catch (error) {
         console.error('Error converting HTML to DOCX:', error);
     }

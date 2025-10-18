@@ -13,6 +13,7 @@ A Node.js library for converting HTML with inline styles to DOCX files using OOX
 - ✅ Support for lists (ul, ol)
 - ✅ Support for images (URLs and base64)
 - ✅ Support for headers and footers (HTML or full-width base64 images)
+- ✅ Support for page numbers in footer with alignment options
 - ✅ Support for line breaks
 - ✅ Generates valid OOXML structure
 - ✅ Customizable default styles
@@ -78,7 +79,18 @@ const options = {
 const buffer = await converter.convertHtmlToDocx(html, options);
 ```
 
-**Note:** Images are absolutely positioned to start from the very edges: headers at top-left (0,0) and footers at bottom-left (0, bottom). They span the full page width (8.5 inches) and height (2 inches) with no margins on any side. Use colored images for best results. Headers and footers may not be visible in all Word views - switch to "Print Layout" view to see them.
+### With Page Numbers
+
+```javascript
+const options = {
+  enablePageNumbers: true,        // Enable/disable page numbers (default: false)
+  pageNumberAlignment: 'right'    // 'left', 'center', or 'right' (default: 'right')
+};
+
+const buffer = await converter.convertHtmlToDocx(html, options);
+```
+
+Page numbers appear in the footer area and update automatically in Word.
 
 ### Supported HTML Elements
 
@@ -168,6 +180,8 @@ new HtmlToDocx(options)
 - `marginHeader` (number): Header margin in inches (default: 0.5)
 - `marginFooter` (number): Footer margin in inches (default: 0.5)
 - `marginGutter` (number): Gutter margin in inches (default: 0)
+- `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
+- `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
 
 #### Methods
 
@@ -180,6 +194,8 @@ Convert HTML string to DOCX buffer.
 - `options` (object): Conversion options
   - `header` (string): HTML content or base64 image data URL for document header
   - `footer` (string): HTML content or base64 image data URL for document footer
+  - `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
+  - `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
   - `pageSize` (string|object): Page size - 'A4', 'Letter', 'Legal', or custom {width: number, height: number} in inches (default: 'A4')
   - `marginTop` (number): Top margin in inches (default: 1)
   - `marginRight` (number): Right margin in inches (default: 1)
