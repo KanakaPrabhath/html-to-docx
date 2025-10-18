@@ -10,6 +10,11 @@ const htmlContent = `
 </head>
 <body style="font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9;">
     <h1 style="color: #333; text-align: center;">Welcome to the html-to-docx library!</h1>
+
+    <div data-h1 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 5px; background-color: #a10101ff; width:100%;">
+    <p data-no-spacing style="color: #ffffffff; margin: 0;">This is a sample heading with text box!</p>
+    </div>
+
     <p style="line-height: 1.6; background-color: #ffff99; padding: 5px;">This library allows you to convert HTML content to DOCX format with ease.</p>
     <h2 style="color: #555;">Features</h2>
     <ul style="margin-left: 20px;">
@@ -54,8 +59,8 @@ async function main() {
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
-        fs.writeFileSync('demo-output-textbox-page-numbers.docx', docxBuffer);
-        console.log('DOCX file created: demo-output-textbox-page-numbers.docx');
+        fs.writeFileSync('demo-output-textbox-page-numbers2.docx', docxBuffer);
+        console.log('DOCX file created: demo-output-textbox-page-numbers2.docx');
     } catch (error) {
         console.error('Error converting HTML to DOCX:', error);
     }
