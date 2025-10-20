@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "test:class": "node test-class.js",
+    "test:direct": "node test-direct-functions.js",
+    "test:all": "npm run test:class && npm run test:direct && npm run test"
   },
   "dependencies": {
     "@kanaka-prabhath/html-to-docx": "file:.."

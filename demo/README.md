@@ -49,19 +49,40 @@ This will convert a sample HTML document to a DOCX file (`demo-output.docx`).
 
 ### Running Tests
 
+The demo includes comprehensive tests for both usage patterns:
+
+#### Class-Based Tests (Recommended for multiple conversions)
+```bash
+node test-class.js
+```
+
+This runs tests using the `HtmlToDocx` class with:
+- Constructor options
+- Runtime options override
+- Buffer output with merged options
+- Advanced features (headers, footers, page numbers)
+- Multiple conversions with the same instance
+
+#### Direct Function Tests (For single conversions)
+```bash
+node test-direct-functions.js
+```
+
+This runs tests using direct function calls with:
+- Basic conversions without options
+- Conversions with inline options
+- Buffer output
+- Advanced features (headers, footers, page numbers)
+- Heading replacements
+
+#### Original Comprehensive Tests
 ```bash
 npm test
 ```
 
-This runs comprehensive tests including:
-- Text alignment
-- Complex formatting (headings, bold, italic, underline)
-- Color and background styling
-- Font size and family
-- Lists and line breaks
-- Edge cases
+This runs the original comprehensive test suite covering various HTML elements and styling scenarios.
 
-Test output files will be generated in the demo directory.
+All test output files will be generated in the demo directory with descriptive names.
 
 ## API Usage
 

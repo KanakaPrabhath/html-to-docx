@@ -47,49 +47,71 @@ A powerful Node.js library for converting HTML with inline styles to Microsoft W
 ## 📦 Installation
 
 ```bash
-npm install @kanaka-prabhath/html-to-docx
+npm install @kanaka-prabhath/html-to-docx@1.0.1
 ```
 
 ## 🚀 Quick Start
 
 ### Basic Usage
 
+#### Using Direct Functions (For single conversions)
+
 ```javascript
-import { HtmlToDocx } from '@kanaka-prabhath/html-to-docx';
+import { convertHtmlToDocx } from '@kanaka-prabhath/html-to-docx';
+import fs from 'fs';
 
-const converter = new HtmlToDocx();
-
-const html = `
+const htmlContent = `
   <h1>Welcome to DOCX Export</h1>
   <p>This is a <strong>bold</strong> paragraph with <em>italic</em> text.</p>
-  <ul>
-    <li>Feature 1</li>
-    <li>Feature 2</li>
-  </ul>
 `;
 
-// Convert to buffer
-const buffer = await converter.convertHtmlToDocx(html);
+const options = {
+  pageSize: 'A4',
+  marginTop: 1,
+  marginRight: 1,
+  marginBottom: 1,
+  marginLeft: 1,
+  enablePageNumbers: true,
+  pageNumberAlignment: 'center'
+};
 
-// Save to file
-await converter.convertHtmlToDocxFile(html, 'document.docx');
+const docxBuffer = await convertHtmlToDocx(htmlContent, options);
+fs.writeFileSync('demo-output.docx', docxBuffer);
 ```
 
 ### Advanced Configuration
 
 ```javascript
-const converter = new HtmlToDocx({
-  fontSize: 12,           // Default font size in points
-  fontFamily: 'Arial',    // Default font family
-  lineHeight: 1.2,        // Line height multiplier
-  pageSize: 'A4',         // Page size: 'A4', 'Letter', 'Legal', or custom object
-  marginTop: 1,           // Top margin in inches
-  marginRight: 1,         // Right margin in inches
-  marginBottom: 1,        // Bottom margin in inches
-  marginLeft: 1,          // Left margin in inches
-  marginHeader: 0.5,      // Header margin in inches
-  marginFooter: 0.5       // Footer margin in inches
-});
+const options = {
+  pageSize: 'A4', // Default page size (A4, Letter, Legal, or custom {width: number, height: number} in inches)
+  marginTop: 1, // 1 inch top margin
+  marginRight: 1, // 1 inch right margin
+  marginBottom: 1, // 1 inch bottom margin
+  marginLeft: 1, // 1 inch left margin
+  marginHeader: 0.5, // 0.5 inch header margin
+  marginFooter: 0.5, // 0.5 inch footer margin
+  headerHeight: 1, // 1 inch header image height
+  footerHeight: 1, // 1 inch footer image height
+  enableHeader: true, // Enable/disable header (default: true if header content provided)
+  enableFooter: true, // Enable/disable footer (default: true if footer content provided)
+  enablePageNumbers: true, // Enable/disable page numbers
+  pageNumberAlignment: 'center', // Page number alignment: 'left', 'center', or 'right'
+  header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
+  footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==',  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
+  headingReplacements: [
+    `<div data-h1 class="textbox" style="border: 1px solid #000000ff; border-radius: 5px; padding: 0px 5px 0px 5px; background-color: #000000ff; width:100%;">
+<p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 21px; font-weight: bold;">HEADING_TEXT</p>
+</div>`,
+    `<div data-h2 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
+<p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 19px; font-weight: bold;">HEADING_TEXT</p>
+</div>`,
+    `<div data-h3 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
+<p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 16px; font-weight: bold;">HEADING_TEXT</p>
+</div>`
+  ]
+};
+
+const converter = new HtmlToDocx(options);
 ```
 
 ## 📖 API Reference
@@ -373,7 +395,7 @@ MIT License - see LICENSE file for details
 
 ## 👥 Author
 
-Kanaka Prabhath (TuteMaker Team)
+Kanaka Prabhath 
 
 ## 🙏 Acknowledgments
 
