@@ -90,8 +90,8 @@ const options = {
   marginLeft: 1, // 1 inch left margin
   marginHeader: 0.5, // 0.5 inch header margin
   marginFooter: 0.5, // 0.5 inch footer margin
-  headerHeight: 1, // 1 inch header image height
-  footerHeight: 1, // 1 inch footer image height
+  headerHeight: 1, // 1 inch header height
+  footerHeight: 1, // 1 inch footer height
   enableHeader: true, // Enable/disable header (default: true if header content provided)
   enableFooter: true, // Enable/disable footer (default: true if footer content provided)
   enablePageNumbers: true, // Enable/disable page numbers
@@ -136,6 +136,8 @@ new HtmlToDocx(options?)
   - `marginLeft` (number): Left margin in inches (default: 1)
   - `marginHeader` (number): Header margin in inches (default: 0.5)
   - `marginFooter` (number): Footer margin in inches (default: 0.5)
+  - `headerHeight` (number): Header height in inches (default: undefined)
+  - `footerHeight` (number): Footer height in inches (default: undefined)
   - `marginGutter` (number): Gutter margin in inches (default: 0)
   - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
   - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional, note: radius not supported in OOXML)

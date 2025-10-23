@@ -41,14 +41,14 @@ async function main() {
             fontFamily: 'Arial',
             lineHeight: 1.5,
             pageSize: 'A4', // Default page size (A4, Letter, Legal, or custom {width: number, height: number} in inches)
-            marginTop: 1, // 1 inch top margin
-            marginRight: 1, // 1 inch right margin
-            marginBottom: 1, // 1 inch bottom margin
-            marginLeft: 1, // 1 inch left margin
-            marginHeader: 0.5, // 0.5 inch header margin
-            marginFooter: 0.5, // 0.5 inch footer margin
-            headerHeight: 1, // 1 inch header image height
-            footerHeight: 1, // 1 inch footer image height
+            marginTop: 0.6, // 1 inch top margin
+            marginRight: 0.6, // 1 inch right margin
+            marginBottom: 0.6, // 1 inch bottom margin
+            marginLeft: 0.6, // 1 inch left margin
+            marginHeader: 0, // 0 header from Top
+            marginFooter: 0, // 0 footer from Bottom
+            headerHeight: 0.6, // 1 inch header height
+            footerHeight: 0.6, // 1 inch footer height
             enableHeader: true, // Enable/disable header (default: true if header content provided)
             enableFooter: true, // Enable/disable footer (default: true if footer content provided)
             enablePageNumbers: true, // Enable/disable page numbers
@@ -59,20 +59,20 @@ async function main() {
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==',  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
             headingReplacements: [
                 `<div data-h1 class="textbox" style="border: 1px solid #000000ff; border-radius: 5px; padding: 0px 5px 0px 5px; background-color: #000000ff; width:100%;">
-    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 21px; font-weight: bold;">HEADING_TEXT</p>
+    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 21px; font-weight: bold; line-height: 1.0;">HEADING_TEXT</p>
     </div>`,
                 `<div data-h2 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
-    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 19px; font-weight: bold;">HEADING_TEXT</p>
+    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 19px; font-weight: bold; line-height: 1.0;">HEADING_TEXT</p>
     </div>`,
                 `<div data-h3 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
-    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 16px; font-weight: bold;">HEADING_TEXT</p>
+    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 16px; font-weight: bold; line-height: 1.0;">HEADING_TEXT</p>
     </div>`
             ]
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
-        fs.writeFileSync('demo-output-textbox-page-numbers3.docx', docxBuffer);
-        console.log('DOCX file created: demo-output-textbox-page-numbers3.docx');
+        fs.writeFileSync('demo-output-test.docx', docxBuffer);
+        console.log('DOCX file created: demo-output-test.docx');
     } catch (error) {
         console.error('Error converting HTML to DOCX:', error);
     }
