@@ -45,8 +45,8 @@ async function main() {
             marginRight: 1, // 1 inch right margin
             marginBottom: 1, // 1 inch bottom margin
             marginLeft: 1, // 1 inch left margin
-            marginHeader: 1, // 1 inch header margin
-            marginFooter: 1, // 1 inch footer margin
+            marginHeader: 0.5, // 0.5 inch header margin
+            marginFooter: 0.5, // 0.5 inch footer margin
             headerHeight: 1, // 1 inch header image height
             footerHeight: 1, // 1 inch footer image height
             enableHeader: true, // Enable/disable header (default: true if header content provided)
@@ -54,7 +54,7 @@ async function main() {
             enablePageNumbers: true, // Enable/disable page numbers
             pageNumberAlignment: 'center', // Page number alignment: 'left', 'center', or 'right'
             enablePageBorder: true, // Enable page border aligned with margins
-            pageBorder: { style: 'single', color: '0000FF', size: 4, radius: 0.05 }, // Custom page border: blue single line of size 4
+            pageBorder: { style: 'single', color: '0000FF', size: 1, radius: 5 }, // Custom page border: blue single line of size 4
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==',  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
             headingReplacements: [
