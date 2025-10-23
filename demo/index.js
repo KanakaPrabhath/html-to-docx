@@ -54,7 +54,7 @@ async function main() {
             enablePageNumbers: true, // Enable/disable page numbers
             pageNumberAlignment: 'center', // Page number alignment: 'left', 'center', or 'right'
             enablePageBorder: true, // Enable page border aligned with margins
-            pageBorder: { style: 'single', color: '0000FF', size: 4 }, // Custom page border: blue single line of size 4
+            pageBorder: { style: 'single', color: '0000FF', size: 4, radius: 0.25 }, // Custom page border: blue single line of size 4
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==',  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
             headingReplacements: [
@@ -71,8 +71,8 @@ async function main() {
         };
 
         const docxBuffer = await convertHtmlToDocx(htmlContent, options);
-        fs.writeFileSync('demo-output-textbox-page-numbers2.docx', docxBuffer);
-        console.log('DOCX file created: demo-output-textbox-page-numbers2.docx');
+        fs.writeFileSync('demo-output-textbox-page-numbers3.docx', docxBuffer);
+        console.log('DOCX file created: demo-output-textbox-page-numbers3.docx');
     } catch (error) {
         console.error('Error converting HTML to DOCX:', error);
     }

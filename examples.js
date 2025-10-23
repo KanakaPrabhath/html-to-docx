@@ -156,7 +156,8 @@ async function exportWithPageBorder(htmlContent, outputPath) {
     pageBorder: {
       style: 'double',
       color: 'FF0000',
-      size: 8
+      size: 8,
+      radius: 5 // Note: Not supported in OOXML page borders
     }
   });
 

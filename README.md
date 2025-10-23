@@ -138,7 +138,7 @@ new HtmlToDocx(options?)
   - `marginFooter` (number): Footer margin in inches (default: 0.5)
   - `marginGutter` (number): Gutter margin in inches (default: 0)
   - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
-  - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4}` (optional)
+  - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional, note: radius not supported in OOXML)
 
 #### Methods
 
@@ -173,7 +173,7 @@ Additional options that can be passed to conversion methods:
 - `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
 - `headingReplacements` (Array<string>): Custom HTML templates for headings (H1, H2, H3, etc.)
 - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
-- `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4}` (optional)
+- `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional, note: radius not supported in OOXML)
 
 ## 🎯 Supported HTML Elements
 
@@ -296,9 +296,24 @@ const options = {
 };
 ```
 
-## 🔧 Advanced Usage
+### Page Borders
 
-### Custom Heading Styles
+Page borders are supported with various styles, colors, and sizes. Note that border radius is not supported in Microsoft Word's OOXML format for page borders. For rounded appearance, consider using:
+
+- `style: 'double'` for a double-line border
+- `style: 'thick'` for a thicker border
+- `style: 'dotted'` or `style: 'dashed'` for different visual effects
+
+```javascript
+const options = {
+  enablePageBorder: true,
+  pageBorder: {
+    style: 'double',
+    color: 'FF0000',
+    size: 8
+  }
+};
+```
 ```javascript
 const options = {
   headingReplacements: [
