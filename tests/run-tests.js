@@ -19,6 +19,7 @@ const testFiles = [
   'test-tables.js',
   'test-images.js',
   'test-textboxes.js',
+  'test-border-radius.js',
   'test-headers-footers.js',
   'test-page-breaks.js',
   'test-page-borders.js',
