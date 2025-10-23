@@ -140,7 +140,7 @@ new HtmlToDocx(options?)
   - `footerHeight` (number): Footer height in inches (default: undefined)
   - `marginGutter` (number): Gutter margin in inches (default: 0)
   - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
-  - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional, note: radius not supported in OOXML)
+  - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional)
 
 #### Methods
 
@@ -175,7 +175,7 @@ Additional options that can be passed to conversion methods:
 - `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
 - `headingReplacements` (Array<string>): Custom HTML templates for headings (H1, H2, H3, etc.)
 - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
-- `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional, note: radius not supported in OOXML)
+- `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional)
 
 ## 🎯 Supported HTML Elements
 
