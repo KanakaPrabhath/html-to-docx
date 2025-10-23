@@ -137,6 +137,8 @@ new HtmlToDocx(options?)
   - `marginHeader` (number): Header margin in inches (default: 0.5)
   - `marginFooter` (number): Footer margin in inches (default: 0.5)
   - `marginGutter` (number): Gutter margin in inches (default: 0)
+  - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
+  - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4}` (optional)
 
 #### Methods
 
@@ -170,6 +172,8 @@ Additional options that can be passed to conversion methods:
 - `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
 - `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
 - `headingReplacements` (Array<string>): Custom HTML templates for headings (H1, H2, H3, etc.)
+- `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
+- `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4}` (optional)
 
 ## 🎯 Supported HTML Elements
 

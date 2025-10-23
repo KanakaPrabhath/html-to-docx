@@ -147,10 +147,27 @@ async function exportWithTemplate(htmlContent, template) {
   return await converter.convertHtmlToDocx(htmlContent);
 }
 
+/**
+ * Example 7: Page border
+ */
+async function exportWithPageBorder(htmlContent, outputPath) {
+  const converter = new HtmlToDocx({
+    enablePageBorder: true,
+    pageBorder: {
+      style: 'double',
+      color: 'FF0000',
+      size: 8
+    }
+  });
+
+  return await converter.convertHtmlToDocxFile(htmlContent, outputPath);
+}
+
 module.exports = {
   exportEditorContent,
   convertToBuffer,
   setupDocxExportHandler,
   batchConvertDocuments,
-  exportWithTemplate
+  exportWithTemplate,
+  exportWithPageBorder
 };
