@@ -20,6 +20,7 @@ const htmlContent = `
         <li>Generates professional DOCX files</li>
     </ul>
     <page-break data-page-break="true" contenteditable="false" data-page-number="2"></page-break>
+    <img data-section-header src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" alt="section header" style="width: 678px; height: 300px; float: none; margin: 0px 0px 10px 10px; display: block;"/>
     <h2 style="color: #555;">Sample Content</h2>
     <p style="line-height: 1.6;">This is a paragraph with <strong>bold text</strong>, <em>italic text</em>, and <u>underlined text</u>.</p>
     <p style="line-height: 1.6;">Here's a list of benefits:</p>
