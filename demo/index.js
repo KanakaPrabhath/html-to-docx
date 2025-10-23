@@ -37,6 +37,9 @@ const htmlContent = `
 async function main() {
     try {
         const options = {
+            fontSize: 12,
+            fontFamily: 'Arial',
+            lineHeight: 1.5,
             pageSize: 'A4', // Default page size (A4, Letter, Legal, or custom {width: number, height: number} in inches)
             marginTop: 1, // 1 inch top margin
             marginRight: 1, // 1 inch right margin
