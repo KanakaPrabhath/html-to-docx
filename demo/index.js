@@ -41,14 +41,14 @@ async function main() {
             fontFamily: 'Arial',
             lineHeight: 1.5,
             pageSize: 'A4', // Default page size (A4, Letter, Legal, or custom {width: number, height: number} in inches)
-            marginTop: 0.6, // 1 inch top margin
-            marginRight: 0.6, // 1 inch right margin
-            marginBottom: 0.6, // 1 inch bottom margin
-            marginLeft: 0.6, // 1 inch left margin
+            marginTop: 0.6, // 0.6 inch top margin
+            marginRight: 0.6, // 0.6 inch right margin
+            marginBottom: 0.6, // 0.6 inch bottom margin
+            marginLeft: 0.6, // 0.6 inch left margin
             marginHeader: 0, // 0 header from Top
             marginFooter: 0, // 0 footer from Bottom
-            headerHeight: 0.6, // 1 inch header height
-            footerHeight: 0.6, // 1 inch footer height
+            headerHeight: 0.6, // 0.6 inch header height
+            footerHeight: 0.6, // 0.6 inch footer height
             enableHeader: true, // Enable/disable header (default: true if header content provided)
             enableFooter: true, // Enable/disable footer (default: true if footer content provided)
             enablePageNumbers: true, // Enable/disable page numbers
