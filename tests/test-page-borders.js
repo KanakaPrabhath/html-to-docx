@@ -33,6 +33,10 @@ async function testPageBorders() {
     const converter = new HtmlToDocx({
       enablePageBorder: true,
       pageBorder: border,
+      marginTop: 0.5,
+      marginRight: 0.5,
+      marginBottom: 0.5,
+      marginLeft: 0.5,
       fontSize: 11,
       fontFamily: 'Calibri',
       lineHeight: 1.15
@@ -69,6 +73,10 @@ async function testPageBorders() {
         size: 2,
         radius: borderRadius.radius
       },
+      marginTop: 0.5,
+      marginRight: 0.5,
+      marginBottom: 0.5,
+      marginLeft: 0.5,
       fontSize: 11,
       fontFamily: 'Calibri',
       lineHeight: 1.15
@@ -104,6 +112,10 @@ async function testPageBorders() {
         size: 4,
         radius: borderConfig.radius
       },
+      marginTop: 0.5,
+      marginRight: 0.5,
+      marginBottom: 0.5,
+      marginLeft: 0.5,
       fontSize: 11,
       fontFamily: 'Calibri',
       lineHeight: 1.15
@@ -139,6 +151,10 @@ async function testPageBorders() {
         size: borderConfig.size,
         radius: borderConfig.radius
       },
+      marginTop: 0.5,
+      marginRight: 0.5,
+      marginBottom: 0.5,
+      marginLeft: 0.5,
       fontSize: 11,
       fontFamily: 'Calibri',
       lineHeight: 1.15
