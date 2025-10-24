@@ -26,12 +26,14 @@ A powerful Node.js library for converting HTML with inline styles to Microsoft W
 ### 📄 Document Layout
 - **Headers & Footers**: HTML content or full-width images
 - **Page Numbers**: Automatic page numbering with alignment options
-- **Page Breaks**: Manual page breaks and section breaks
+- **Page Breaks**: Manual page breaks, CSS page breaks, and section breaks
+- **Page Borders**: Customizable border styles, colors, sizes, and radius
 - **Margins**: Customizable page margins (top, bottom, left, right)
 - **Page Size**: Support for A4, Letter, Legal, and custom sizes
 
 ### 🎨 Advanced Styling
-- **Text Boxes**: Div elements with background colors and borders
+- **Text Boxes**: Div elements with background colors, borders, padding, width, and border-radius
+- **Section Header Images**: Images with top/bottom text wrapping using `data-section-header`
 - **Tables**: Full table support with headers and cells
 - **Spacing**: Custom paragraph spacing and line height
 - **Borders**: Border styling for text boxes and tables
@@ -42,12 +44,15 @@ A powerful Node.js library for converting HTML with inline styles to Microsoft W
 - **HTML Sanitization**: Automatic cleaning of unsafe HTML elements
 - **CSS Parsing**: Support for safe CSS properties
 - **Media Management**: Efficient handling of embedded images
+- **Buffer Output**: Direct buffer output for memory-based processing
+- **Edge Case Handling**: Robust processing of malformed HTML and special characters
+- **Performance Optimized**: Efficient processing for large documents
 - **ZIP Packaging**: Proper DOCX file generation using JSZip
 
 ## 📦 Installation
 
 ```bash
-npm install @kanaka-prabhath/html-to-docx@1.0.1
+npm install @kanaka-prabhath/html-to-docx@1.0.2
 ```
 
 ## 🚀 Quick Start
@@ -173,9 +178,9 @@ Additional options that can be passed to conversion methods:
 - `footer` (string): HTML content or base64 image data URL for document footer
 - `enablePageNumbers` (boolean): Enable/disable page numbers in footer (default: false)
 - `pageNumberAlignment` (string): Page number alignment - 'left', 'center', or 'right' (default: 'right')
-- `headingReplacements` (Array<string>): Custom HTML templates for headings (H1, H2, H3, etc.)
 - `enablePageBorder` (boolean): Enable page borders aligned with margins (default: false)
 - `pageBorder` (object): Page border configuration `{style: 'single', color: '000000', size: 4, radius: 0}` (optional)
+- `headingReplacements` (Array<string>): Custom HTML templates for headings (H1, H2, H3, etc.)
 
 ## 🎯 Supported HTML Elements
 
@@ -244,6 +249,21 @@ Additional options that can be passed to conversion methods:
 <p>Content before break</p>
 <page-break></page-break>
 <p>Content after break</p>
+
+<!-- CSS page breaks -->
+<p style="page-break-before: always;">Content with page break before</p>
+<p style="page-break-after: always;">Content with page break after</p>
+```
+
+### Section Header Images
+```html
+<!-- Regular section header image with text wrapping -->
+<img data-section-header src="image.png" alt="Section Header" style="width: 400px; height: 150px; margin: 20px; display: block;"/>
+<p>Text that wraps above and below the section header image.</p>
+
+<!-- Cover image that spans full page width -->
+<img data-section-header data-cover src="cover-image.png" alt="Cover Image" style="height: 200px; display: block;"/>
+<p>Text that appears below the full-width cover image.</p>
 ```
 
 ## 🎨 CSS Property Support
@@ -259,11 +279,16 @@ Additional options that can be passed to conversion methods:
 - `font-family`: Font family names
 - `margin`: All margin properties for spacing
 - `padding`: Padding for text boxes
-- `border`: Border styling for text boxes
+- `border`: Border styling for text boxes (width, style, color)
 - `border-radius`: Border radius for text boxes
 - `width`/`height`: Dimensions for images and text boxes
 - `page-break-before`/`page-break-after`: always
 - `float`: left, right (for images)
+
+### Special Attributes
+- `data-section-header`: Positions image at top of content section with text wrapping
+- `data-cover`: Makes section header image span full page width
+- `data-no-spacing`: Removes default spacing from paragraphs
 
 ### Automatic Sanitization
 The library automatically removes or ignores:
@@ -300,19 +325,16 @@ const options = {
 
 ### Page Borders
 
-Page borders are supported with various styles, colors, and sizes. Note that border radius is not supported in Microsoft Word's OOXML format for page borders. For rounded appearance, consider using:
-
-- `style: 'double'` for a double-line border
-- `style: 'thick'` for a thicker border
-- `style: 'dotted'` or `style: 'dashed'` for different visual effects
+Page borders support various styles, colors, sizes, and radius for professional document appearance.
 
 ```javascript
 const options = {
   enablePageBorder: true,
   pageBorder: {
-    style: 'double',
-    color: 'FF0000',
-    size: 8
+    style: 'double',    // 'single', 'double', 'thick', 'dotted', 'dashed'
+    color: 'FF0000',    // Hex color without #
+    size: 8,            // Border thickness in points
+    radius: 5           // Border radius in points (rounded corners)
   }
 };
 ```
@@ -355,6 +377,52 @@ const documents = [
 for (const doc of documents) {
   await converter.convertHtmlToDocxFile(doc.html, `${doc.name}.docx`);
 }
+```
+
+### Advanced Features Examples
+
+#### Section Header Images and Cover Images
+```javascript
+const html = `
+  <h1>Document with Section Headers</h1>
+  
+  <img data-section-header src="data:image/png;base64,iVBORw0KGgo..." alt="Section Header" style="width: 400px; height: 150px; margin: 20px;"/>
+  <p>Content that wraps above and below the section header image.</p>
+  
+  <page-break></page-break>
+  
+  <img data-section-header data-cover src="data:image/png;base64,iVBORw0KGgo..." alt="Cover Image" style="height: 200px;"/>
+  <p>Content below the full-width cover image.</p>
+`;
+
+const options = {
+  enablePageBorder: true,
+  pageBorder: {
+    style: 'double',
+    color: '000000',
+    size: 6,
+    radius: 8
+  }
+};
+
+await converter.convertHtmlToDocxFile(html, 'advanced-document.docx', options);
+```
+
+#### Enhanced Page Breaks and Text Boxes
+```javascript
+const html = `
+  <div style="background-color: #F0F0F0; padding: 15px; border: 2px solid #333; border-radius: 5px;">
+    <h2>Text Box with Rounded Borders</h2>
+    <p>This content appears in a styled text box.</p>
+  </div>
+  
+  <p style="page-break-after: always;">This paragraph forces a page break after it.</p>
+  
+  <h2>New Page Content</h2>
+  <p>This appears on a new page due to the CSS page break.</p>
+`;
+
+await converter.convertHtmlToDocxFile(html, 'enhanced-layout.docx');
 ```
 
 ## 🏗️ Architecture
