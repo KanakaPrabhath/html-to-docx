@@ -18,6 +18,8 @@ const testFiles = [
   'test-lists.js',
   'test-tables.js',
   'test-images.js',
+  'test-section-header-images.js',
+  'test-complex-section-headers.js',
   'test-textboxes.js',
   'test-headers-footers.js',
   'test-page-breaks.js',
