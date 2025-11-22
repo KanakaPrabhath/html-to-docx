@@ -1,6 +1,6 @@
 {
   "name": "html-to-docx-demo",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Demo app for testing html-to-docx library",
   "type": "module",
   "scripts": {
