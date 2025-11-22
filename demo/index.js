@@ -59,11 +59,11 @@ async function main() {
             header: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==', // Blue colored image for header (positioned at top-left 0,0, full width)
             footer: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9ewAAAABJRU5ErkJggg==',  // Blue colored image for footer (positioned at bottom-left 0,bottom, full width)
             headingReplacements: [
-                `<div data-h1 class="textbox" style="border: 1px solid #000000ff; border-radius: 5px; padding: 5px 5px 0px 5px; background-color: #000000ff; width:100%;">
+                `<div data-h1 class="textbox" style="border: 1px solid #ffffffff; border-radius: 5px; padding: 0px 5px 0px 5px; background: linear-gradient(to right, #000000ff, #ffffffff); width:100%;">
     <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 21px; font-weight: bold;">HEADING_TEXT</p>
     </div>`,
-                `<div data-h2 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
-    <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 19px; font-weight: bold;">HEADING_TEXT</p>
+                `<div data-h2 class="textbox" style="border: 1px dashed #050505ff; border-radius: 5px; padding: 0px 0px 0px 0px; background: linear-gradient(to bottom, #a1a1a1ff, #ffffffff); width:100%;">
+    <p data-no-spacing style="color: #000000ff; margin: 0; font-size: 19px; font-weight: bold;">HEADING_TEXT</p>
     </div>`,
                 `<div data-h3 class="textbox" style="border: 1px solid #00b118ff; border-radius: 5px; padding: 0px; background-color: #a10101ff; width:100%;">
     <p data-no-spacing style="color: #ffffffff; margin: 0; font-size: 16px; font-weight: bold;">HEADING_TEXT</p>
